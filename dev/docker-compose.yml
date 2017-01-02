@@ -20,6 +20,7 @@ services:
       - NODE_ENV=production
       - kuzzle_plugins__kuzzle-plugin-template__path=/tmp/kuzzle-plugin-template
       - kuzzle_plugins__kuzzle-plugin-template__activated=true
+      - kuzzle_plugins__kuzzle-plugin-template__version=
     volumes:
       - '../:/tmp/kuzzle-plugin-template'
       - './pm2.json:/config/pm2.json'

@@ -33,6 +33,12 @@ $ docker-compose -f docker/docker-compose.yml up
 
 This command will start a Kuzzle stack with this plugin enabled. To make development more confortable, a watcher will also be activated, restarting Kuzzle every time a modification is detected.
 
+**Note:** depending on your operating system, you may get `ENOSPC` errors due to the file watcher. This is due to a `sysctl` restriction, and can be alleviated by applying the following command prior to starting the docker stack:
+
+```bash
+$ sudo sysctl -w fs.inotify.max_user_watches=52428
+```
+
 #### Working on a different Kuzzle tag
 
 You can choose to work on the Kuzzle development branch by defining the following environment variables before launching `docker-compose`:

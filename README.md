@@ -64,8 +64,8 @@ The `manifest.json` file is here to provide a description of your plugin to Kuzz
   /**
    * Define what Kuzzle version this plugin is designed for.
    * Use semver notation to limit the range of supported Kuzzle versions.
-   * If not set, Kuzzle will complain and consider the plugin has been designed
-   * for Kuzzle v1.
+   * If not set, Kuzzle will complain and consider that the plugin has been 
+   * designed for Kuzzle v1 only.
    */
   "kuzzleVersion": ">=1.1.0 <2.0.0"
 }

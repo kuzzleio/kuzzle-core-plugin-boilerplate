@@ -17,9 +17,9 @@ This plugin is useful only if you use it as the starting point of your work. It'
 
 Clone this repository locally and make it accessible from the `plugins/enabled` directory relative to the Kuzzle installation directory. A common practice is to put the code of the plugin in `plugins/available` and create a symbolic link to it in `plugins/enabled`.
 
-**Note.** If you are running Kuzzle within a Docker container, you will need to mount the local plugin installation directory as a volume in the container.
+**Note.** If you are running Kuzzle from within a Docker container, you will need to mount the local plugin installation directory as a volume in the container.
 
-Please refer to the Guide for further instructions on [how to install Kuzzle plugins](http://docs.kuzzle.io/guide/essentials/plugins/#managing-plugins).
+Please refer to the Guide for further instructions on [how to install Kuzzle plugins](https://docs.kuzzle.io/guide/essentials/plugins/#managing-plugins).
 
 ### On a pristine Kuzzle stack
 
@@ -47,7 +47,7 @@ These environment variables enable you to specify any existing build tag availab
 
 #### Customizing the plugin instance name
 
-You may like to name your plugin differently than the default set name. To do so, edit the `manifest.json` at the root of this repo and change the `name` property to your convenience.
+You may want to choose a plugin name rather than using the default one. To do so, edit the `manifest.json` file at the root of this repo and change the `name` property to your convenience.
 
 
 ## `manifest.json` file

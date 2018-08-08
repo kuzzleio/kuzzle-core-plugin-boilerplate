@@ -5,9 +5,9 @@
   "description": "Kuzzle plugin boilerplate template",
   "main": "lib/index.js",
   "scripts": {
-    "test": "npm run --silent lint && npm run --silent unit-test",
-    "lint": "eslint --max-warnings=0 ./lib ./test",
-    "unit-test": "istanbul cover _mocha"
+    "test": "npm run --silent lint && npm run unit-test",
+    "lint": "eslint --max-warnings=0 ./lib",
+    "unit-test": "nyc --reporter=text-summary --reporter=lcov mocha"
   },
   "repository": {
     "type": "git",
@@ -24,15 +24,15 @@
   },
   "homepage": "https://github.com/kuzzleio/kuzzle-core-plugin-boilerplate#readme",
   "devDependencies": {
-    "eslint": "^3.6.1",
-    "istanbul": "^0.4.5",
-    "mocha": "^3.1.0",
-    "should": "^11.1.0",
-    "should-sinon": "0.0.5",
-    "sinon": "^2.3.2"
+    "eslint": "^5.3.0",
+    "mocha": "^5.2.0",
+    "nyc": "^12.0.2",
+    "should": "^13.2.3",
+    "should-sinon": "0.0.6",
+    "sinon": "^6.1.4"
   },
   "dependencies": {
-    "passport": "^0.3.2",
+    "passport": "^0.4.0",
     "passport-local": "^1.0.0"
   }
 }

@@ -1,6 +1,6 @@
 # kuzzle-core-plugin-boilerplate
 
-Here, you'll find the boilerplate to start coding a new [Kuzzle Core Plugin](http://docs.kuzzle.io/guide/essentials/plugins/). A Core Plugin allows you to
+Here, you'll find a boilerplate to start coding a new [Kuzzle Core Plugin](http://docs.kuzzle.io/guide/essentials/plugins/). A Core Plugin allows you to:
 
 * [listen asynchronously](http://docs.kuzzle.io/plugins-reference/plugins-features/adding-hooks), and perform operations that depend on data-related events;
 * [listen synchronously](http://docs.kuzzle.io/plugins-reference/plugins-features/adding-pipes), and approve, modify and/or reject data-related queries;
@@ -49,16 +49,12 @@ These environment variables enable you to specify any existing build tag availab
 
 #### Customizing the plugin instance name
 
-You may like to name your plugin differently than the name of this repo. To do so, rename the local directory of the repo and define the following environment variable before launching the development stack:
+You may like to name your plugin differently than the default set name. To do so, edit the `manifest.json` at the root of this repo and change the `name` property to your convenience.
 
-```bash
-$ export PLUGIN_NAME=my-awesome-plugin
-$ docker-compose -f docker/docker-compose.yml up
-```
 
 ## `manifest.json` file
 
-`manifest.json` are here to describe usage of your plugin:
+The `manifest.json` file is here to provide a description of your plugin to Kuzzle:
 
 ```js
 {
@@ -66,26 +62,13 @@ $ docker-compose -f docker/docker-compose.yml up
    * This is metadata to describe your plugin
    */
   "name": "name-of-your-plugin",
-  "version": "2.3.1",
-
- /**
-  * Define which core version this plugin is designed for.
-  * Use semver notation to born Kuzzle version this plugins supports
-  * - if set, and installation requirement is not meet, an error will be thrown and Kuzzle will not start
-  */
-  "kuzzleVersion": "^1.1.x",
 
   /**
-   * Define if this plugin supports worker plugins (multi-threaded)
-   * Setting this to true allows users to set "threads" configuration
-   *
-   * /!\ warning: Threaded plugins will not be able to access:
-   *                - authentication strategies
-   *                - pipes events
-   *                - custom controllers
-   *
-   * @type {Boolean}
+   * Define what Kuzzle version this plugin is designed for.
+   * Use semver notation to limit the range of supported Kuzzle versions.
+   * If not set, Kuzzle will complain and consider the plugin has been designed
+   * for Kuzzle v1.
    */
-  "threadable": true
+  "kuzzleVersion": ">=1.1.0 <2.0.0"
 }
 ```

@@ -17,9 +17,9 @@ This plugin is useful only if you use it as the starting point of your work. It'
 
 Clone this repository locally and make it accessible from the `plugins/enabled` directory relative to the Kuzzle installation directory. A common practice is to put the code of the plugin in `plugins/available` and create a symbolic link to it in `plugins/enabled`.
 
-**Note.** If you are running Kuzzle within a Docker container, you will need to mount the local plugin installation directory as a volume in the container.
+**Note.** If you are running Kuzzle from within a Docker container, you will need to mount the local plugin installation directory as a volume in the container.
 
-Please refer to the Guide for further instructions on [how to install Kuzzle plugins](http://docs.kuzzle.io/guide/essentials/plugins/#managing-plugins).
+Please refer to the Guide for further instructions on [how to install Kuzzle plugins](https://docs.kuzzle.io/guide/essentials/plugins/#managing-plugins).
 
 ### On a pristine Kuzzle stack
 
@@ -33,29 +33,32 @@ $ docker-compose -f docker/docker-compose.yml up
 
 This command will start a Kuzzle stack with this plugin enabled. To make development more confortable, a watcher will also be activated, restarting Kuzzle every time a modification is detected.
 
+**Note:** depending on your operating system, you may get `ENOSPC` errors due to the file watcher. This is due to a `sysctl` restriction, and can be alleviated by applying the following command prior to starting the docker stack:
+
+```bash
+$ sudo sysctl -w fs.inotify.max_user_watches=52428
+```
+
 #### Working on a different Kuzzle tag
 
 You can choose to work on the Kuzzle development branch by defining the following environment variables before launching `docker-compose`:
 
 ```bash
-$ export KUZZLE_DOCKER_TAG=1.2.13
+$ export KUZZLE_DOCKER_TAG=1.4.2
 $ docker-compose -f docker/docker-compose.yml up
 ```
 
 These environment variables enable you to specify any existing build tag available on [Docker Hub](https://hub.docker.com/r/kuzzleio/kuzzle/tags/).
 
+
 #### Customizing the plugin instance name
 
-You may like to name your plugin differently than the name of this repo. To do so, rename the local directory of the repo and define the following environment variable before launching the development stack:
+You may want to choose a plugin name rather than using the default one. To do so, edit the `manifest.json` file at the root of this repo and change the `name` property to your convenience.
 
-```bash
-$ export PLUGIN_NAME=my-awesome-plugin
-$ docker-compose -f docker/docker-compose.yml up
-```
 
 ## `manifest.json` file
 
-`manifest.json` are here to describe usage of your plugin:
+The `manifest.json` file is here to provide a description of your plugin to Kuzzle:
 
 ```js
 {
@@ -63,13 +66,13 @@ $ docker-compose -f docker/docker-compose.yml up
    * This is metadata to describe your plugin
    */
   "name": "name-of-your-plugin",
-  "version": "2.3.1",
 
- /**
-  * Define which core version this plugin is designed for.
-  * Use semver notation to born Kuzzle version this plugins supports
-  * - if set, and installation requirement is not meet, an error will be thrown and Kuzzle will not start
-  */
-  "kuzzleVersion": "^1.2.x"
+  /**
+   * Define what Kuzzle version this plugin is designed for.
+   * Use semver notation to limit the range of supported Kuzzle versions.
+   * If not set, Kuzzle will complain and consider that the plugin has been 
+   * designed for Kuzzle v1 only.
+   */
+  "kuzzleVersion": ">=1.1.0 <2.0.0"
 }
 ```

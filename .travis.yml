@@ -12,7 +12,8 @@ env:
 
 before_install:
   - sudo sysctl -w vm.max_map_count=262144
+  - sudo sysctl -w fs.inotify.max_user_watches=524288
 
 script:
   # Run tests
-  - npm install && npm run test
+  - npm install --unsafe-perm && npm test

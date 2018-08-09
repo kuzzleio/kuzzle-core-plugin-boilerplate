@@ -8,21 +8,17 @@ const
   } = require('cucumber'),
   Kuzzle = require('kuzzle-sdk'),
   nexpect = require('nexpect'),
-  {
-    spawnSync
-  } = require('child_process');
-
-let kuzzle;
+  { spawnSync } = require('child_process');
 
 Given(/a running instance of Kuzzle with a client connected/, function (callback) {
-  this.kuzzle = new Kuzzle(this.host, { port: this.port }, (error, result) => {
+  this.kuzzle = new Kuzzle(this.host, { port: this.port }, error => {
     callback(error);
   });
 });
 
 When(/I (create|update|delete) the document "([^"]*)"/, function (action, document, callback) {
   const collection = this.kuzzle.collection('test-collection', 'test-index');
-  collection[`${action}DocumentPromise`].apply(collection, [document, { name: 'gordon', age: 42 }])
+  collection[`${action}DocumentPromise`](document, { name: 'gordon', age: 42 })
     .then(() => callback())
     .catch(error => callback(error));
 });
@@ -68,7 +64,7 @@ When(/I create an user using my new "(\w+)" strategy/, function (strategy, callb
     .security
     .createUserPromise('hackerman', user, {})
     .then(() => callback())
-    .catch(error => callback());
+    .catch(() => callback());
 });
 
 Then(/I can login my user using my new "(\w+)" strategy/, function (strategy, callback) {

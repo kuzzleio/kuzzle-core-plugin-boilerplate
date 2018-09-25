@@ -86,3 +86,21 @@ Then('I am successfully logged in', function (callback) {
     callback(new Error('User not loggued in (JWT Token not present)'));
   }
 });
+
+When(/I execute a query to the SDK usage action with document id "([^"]*)"/, function (documentId, callback) {
+  const args = {
+    controller: 'kuzzle-core-plugin-boilerplate/myNewController',
+    action: 'getDocument'
+  };
+
+  const query = {
+    documentId,
+    indexName: 'test-index',
+    collectionName: 'test-collection'
+  };
+
+  this.kuzzle
+    .queryPromise(args, query)
+    .then(() => callback())
+    .catch(error => callback(error));
+});

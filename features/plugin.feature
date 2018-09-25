@@ -21,3 +21,9 @@ Feature: Core Plugin Boilerplate functional tests
     And I create an user using my new "dummy" strategy
     When I can login my user using my new "dummy" strategy
     Then I am successfully logged in
+
+  Scenario: SDK usage
+    Given a running instance of Kuzzle with a client connected
+    And I create the document "anti-citoyen-3"
+    When I execute a query to the SDK usage action with document id "anti-citoyen-3"
+    Then I should encounter the log "Document anti-citoyen-3 found"

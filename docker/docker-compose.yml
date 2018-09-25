@@ -9,6 +9,12 @@ services:
       - "./install-plugins.sh:/install-plugins.sh"
       - "./pm2.json:/config/pm2.json"
       - "..:/var/app/plugins/enabled/${PLUGIN_NAME:-kuzzle-core-plugin-boilerplate}"
+    cap_add:
+      - SYS_PTRACE
+    ulimits:
+      nofile: 65536
+    sysctls:
+      - net.core.somaxconn=8192
     depends_on:
       - redis
       - elasticsearch
@@ -26,13 +32,9 @@ services:
     image: redis:3.2
 
   elasticsearch:
-    image: docker.elastic.co/elasticsearch/elasticsearch:5.4.1
+    image: kuzzleio/elasticsearch:5.4.1
     ulimits:
       nofile: 65536
     environment:
       - cluster.name=kuzzle
-      # disable xpack
-      - xpack.security.enabled=false
-      - xpack.monitoring.enabled=false
-      - xpack.graph.enabled=false
-      - xpack.watcher.enabled=false
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"

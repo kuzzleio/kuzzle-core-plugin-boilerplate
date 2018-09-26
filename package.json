@@ -1,7 +1,7 @@
 {
   "name": "kuzzle-core-plugin-boilerplate",
   "author": "The Kuzzle Team <support@kuzzle.io>",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Kuzzle plugin boilerplate template",
   "main": "lib/index.js",
   "scripts": {

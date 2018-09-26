@@ -5,9 +5,7 @@ const
   } = require('cucumber'),
   Kuzzle = require('kuzzle-sdk'),
   KWorld = require('./world'),
-  {
-    spawnSync
-  } = require('child_process');
+  { spawnSync } = require('child_process');
 
 BeforeAll(function(callback) {
   let maxTries = 10;
@@ -19,7 +17,7 @@ BeforeAll(function(callback) {
   while (! connected && maxTries > 0) {
     curl = spawnSync('curl', [`${world.host}:${world.port}`]);
 
-    if (curl.status == 0) {
+    if (curl.status === 0) {
       connected = true;
     } else {
       console.log(`[${maxTries}] Waiting for kuzzle..`);
@@ -28,25 +26,25 @@ BeforeAll(function(callback) {
     }
   }
 
-  if (! connected) {
-    callback(new Error("Unable to start docker-compose stack"));
+  if (!connected) {
+    return callback(new Error('Unable to start docker-compose stack'));
   }
 
-  const kuzzle = new Kuzzle(world.host, { port: world.port }, (error, result) => {
+  const kuzzle = new Kuzzle(world.host, { port: world.port }, error => {
     if (error) {
-      callback(error);
+      return callback(error);
     }
-     
-    kuzzle
-     .createIndexPromise('test-index')
-     .then(() => kuzzle.collection('test-collection', 'test-index').createPromise())
-     .then(() => callback())
-     .catch(err => callback(err))
-     .finally(() => kuzzle.disconnect());
-  })
 
-  After(function (callback) {
-    if (this.kuzzle && typeof this.kuzzle.disconnect == 'function') {
+    kuzzle
+      .createIndexPromise('test-index')
+      .then(() => kuzzle.collection('test-collection', 'test-index').createPromise())
+      .then(() => callback())
+      .catch(err => callback(err))
+      .finally(() => kuzzle.disconnect());
+  });
+
+  After(function () {
+    if (this.kuzzle && typeof this.kuzzle.disconnect === 'function') {
       this.kuzzle.disconnect();
     }
   });

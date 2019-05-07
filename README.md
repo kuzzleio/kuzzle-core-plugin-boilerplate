@@ -1,10 +1,10 @@
 # kuzzle-core-plugin-boilerplate
 Here, you'll find the boilerplate to start coding a new [Kuzzle Core Plugin](https://docs.kuzzle.io/plugins/1/essentials/getting-started/). A Core Plugin allows you to
 
-* [listen asynchronously](https://docs.kuzzle.io/plugins/1/essentials/hooks/), and perform operations that depend on data-related events;
-* [listen synchronously](https://docs.kuzzle.io/plugins/1/essentials/pipes/), and approve, modify and/or reject data-related queries;
-* [add a controller route](https://docs.kuzzle.io/plugins/1/essentials/controllers/) to expose new actions to the API;
-* [add an authentication strategy](https://docs.kuzzle.io/plugins/1/essentials/strategies/) to Kuzzle.
+* [listen asynchronously](https://docs.kuzzle.io/plugins/1/hooks/), and perform operations that depend on data-related events;
+* [listen synchronously](https://docs.kuzzle.io/plugins/1/pipes/), and approve, modify and/or reject data-related queries;
+* [add a controller route](https://docs.kuzzle.io/plugins/1/controllers/) to expose new actions to the API;
+* [add an authentication strategy](https://docs.kuzzle.io/plugins/1/strategies/) to Kuzzle.
 
 
 The boilerplate demonstrates each feature of a Core Plugin.
@@ -19,7 +19,7 @@ Clone this repository locally and make it accessible from the `plugins/enabled` 
 
 **Note.** If you are running Kuzzle from within a Docker container, you will need to mount the local plugin installation directory as a volume in the container.
 
-Please refer to the Guide for further instructions on [how to install Kuzzle plugins](https://docs.kuzzle.io/guide/1/essentials/plugins/).
+Please refer to the Guide for further instructions on [how to install Kuzzle plugins](https://docs.kuzzle.io/guide/1/essentials/plugins/#installing-a-plugin).
 
 ### On a pristine Kuzzle stack
 

@@ -9,6 +9,13 @@ Here, you'll find the boilerplate to start coding a new [Kuzzle Core Plugin](htt
 
 The boilerplate demonstrates each feature of a Core Plugin.
 
+
+## Get trained by the creators of Kuzzle :zap:
+
+Train yourself and your teams to use Kuzzle to maximize its potential and accelerate the development of your projects.  
+Our teams will be able to meet your needs in terms of expertise and multi-technology support for IoT, mobile/web, backend/frontend, devops.  
+:point_right: [Get a quote](https://hubs.ly/H0jkfJ_0)
+
 ## Plugin development
 
 This plugin is useful only if you use it as the starting point of your work. It's a boilerplate.

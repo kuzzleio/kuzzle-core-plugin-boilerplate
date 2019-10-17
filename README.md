@@ -51,7 +51,7 @@ $ sudo sysctl -w fs.inotify.max_user_watches=52428
 You can choose to work on the Kuzzle development branch by defining the following environment variables before launching `docker-compose`:
 
 ```bash
-$ export KUZZLE_DOCKER_TAG=1.4.2
+$ export KUZZLE_DOCKER_TAG=2.4.2
 $ docker-compose up
 ```
 
@@ -77,9 +77,7 @@ The `manifest.json` file is here to provide a description of your plugin to Kuzz
   /**
    * Define what Kuzzle version this plugin is designed for.
    * Use semver notation to limit the range of supported Kuzzle versions.
-   * If not set, Kuzzle will complain and consider that the plugin has been 
-   * designed for Kuzzle v1 only.
    */
-  "kuzzleVersion": ">=1.1.0 <2.0.0"
+  "kuzzleVersion": ">=2.1.0 <3.0.0"
 }
 ```

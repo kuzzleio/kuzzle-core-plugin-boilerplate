@@ -25,12 +25,12 @@
   "homepage": "https://github.com/kuzzleio/kuzzle-core-plugin-boilerplate#readme",
   "devDependencies": {
     "cucumber": "^5.1.0",
-    "eslint": "^5.16.0",
-    "kuzzle-sdk": "^7.0.0-beta.1",
+    "eslint": "^6.8.0",
+    "kuzzle-sdk": "^7.2.0",
     "nexpect": "^0.6.0"
   },
   "dependencies": {
-    "passport": "^0.4.0",
+    "passport": "^0.4.1",
     "passport-local": "^1.0.0"
   }
 }

@@ -3,12 +3,15 @@
 set -e
 
 log () {
-  echo "[$(date --rfc-3339 seconds)] - $1"
+  echo "[$(date)] - $1"
 }
 
 elastic_host=${kuzzle_services__db__client__host:-http://elasticsearch:9200}
 
-/install-plugins.sh
+plugin_name=${PLUGIN_NAME:-kuzzle-core-plugin-boilerplate}
+
+echo "Installing plugin $plugin_name dependencies"
+cd /var/app/plugins/enabled/$plugin_name && npm install --unsafe-perm && chmod 777 node_modules/
 
 log "Waiting for elasticsearch"
 while ! curl -f -s -o /dev/null "$elastic_host"
@@ -29,5 +32,11 @@ fi
 
 log "Starting Kuzzle..."
 
-pm2 start /config/pm2.json
-pm2 logs --lines 2
+cd /var/app
+
+nodemon \
+    --inspect=0.0.0.0:9229 \
+    bin/start-kuzzle-server
+    # --mappings /fixtures/mappings.json \
+    # --fixtures /fixtures/fixtures.json \
+    # --securities /fixtures/securities.json

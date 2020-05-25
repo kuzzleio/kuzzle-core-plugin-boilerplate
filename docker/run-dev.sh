@@ -37,6 +37,3 @@ cd /var/app
 nodemon \
     --inspect=0.0.0.0:9229 \
     bin/start-kuzzle-server
-    # --mappings /fixtures/mappings.json \
-    # --fixtures /fixtures/fixtures.json \
-    # --securities /fixtures/securities.json
